@@ -58,6 +58,10 @@ export interface TranslationSchema {
     darkMode: string;
     clearFilters: string;
     hotelOperations: string;
+    mobileUnsupportedTitle: string;
+    mobileUnsupportedDesc: string;
+    mobileUnsupportedMinResolution: string;
+    mobileUnsupportedLogout: string;
     roleGm: string;
     roleFrontDesk: string;
     roleHousekeepingShort: string;

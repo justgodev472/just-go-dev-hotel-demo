@@ -1,4 +1,4 @@
-import { type Currency, type Room, type Booking, type UserRole } from "./hotel";
+import { type Currency, type Booking, type UserRole } from "./hotel";
 
 export interface DashboardMetrics {
   totalRooms: number;

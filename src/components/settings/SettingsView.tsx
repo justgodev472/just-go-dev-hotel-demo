@@ -8,7 +8,6 @@ import {
   Moon,
   LogOut,
   User,
-  CheckCircle2,
   Crown,
   Shield,
   Wrench,

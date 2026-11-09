@@ -9,8 +9,12 @@ import { type CreateBookingModalProps } from "@/types/booking";
 import { type Booking } from "@/types/hotel";
 import { useLanguage } from "@/context/LanguageContext";
 
-export function CreateBookingModal({
-  isOpen,
+export function CreateBookingModal(props: CreateBookingModalProps) {
+  if (!props.isOpen) return null;
+  return <CreateBookingModalContent {...props} />;
+}
+
+function CreateBookingModalContent({
   availableRooms,
   currency,
   onClose,
@@ -24,20 +28,15 @@ export function CreateBookingModal({
   const [selectedRoomId, setSelectedRoomId] = useState(
     availableRooms[0]?.id || ""
   );
-  const [checkIn, setCheckIn] = useState("2026-11-01");
-  const [checkOut, setCheckOut] = useState("2026-11-03");
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const now = new Date();
-      const tmrw = new Date();
-      tmrw.setDate(tmrw.getDate() + 1);
-      setCheckIn(now.toISOString().split("T")[0]);
-      setCheckOut(tmrw.toISOString().split("T")[0]);
-    }
-  }, []);
-
-  if (!isOpen) return null;
+  const [checkIn, setCheckIn] = useState(() => {
+    const now = new Date();
+    return now.toISOString().split("T")[0];
+  });
+  const [checkOut, setCheckOut] = useState(() => {
+    const tmrw = new Date();
+    tmrw.setDate(tmrw.getDate() + 1);
+    return tmrw.toISOString().split("T")[0];
+  });
 
   const selectedRoom = availableRooms.find((r) => r.id === selectedRoomId);
   const nights = Math.max(
@@ -50,13 +49,16 @@ export function CreateBookingModal({
   const roomPrice = selectedRoom ? getRoomPrice(selectedRoom, currency) : 0;
   const totalAmount = roomPrice * nights;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!guestName.trim() || !selectedRoom) return;
 
+    const timestamp = Date.now();
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+
     const newBooking: Booking = {
-      id: `bk-${Date.now()}`,
-      bookingRef: `JG-${Math.floor(1000 + Math.random() * 9000)}`,
+      id: `bk-${timestamp}`,
+      bookingRef: `JG-${randomSuffix}`,
       guestName: guestName.trim(),
       guestEmail: guestEmail.trim() || "guest@example.com",
       guestPhone: guestPhone.trim() || "+856 20 5555 1234",
@@ -74,7 +76,7 @@ export function CreateBookingModal({
     };
 
     onCreateBooking(newBooking);
-  };
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-200">

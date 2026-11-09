@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { AppSidebar } from "@/components/shared/AppSidebar";
+import { MobileUnsupportedView } from "@/components/shared/MobileUnsupportedView";
 import { useHotel } from "@/context/HotelContext";
 
 export default function MainLayout({
@@ -33,14 +34,22 @@ export default function MainLayout({
 
   return (
     <div className="min-h-screen bg-background">
-      <AppSidebar />
-      <div className="lg:pl-64 flex flex-col min-h-screen">
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full">
-          {children}
-        </main>
-        <footer className="p-4 border-t border-border/60 text-center text-xs text-muted-foreground">
-          JustGoDev Hotel Suite • Developed by Nengxiong WANGTOUAXIONG, Vientiane, Laos
-        </footer>
+      {/* Mobile Gate: Displayed on screens smaller than 1024px */}
+      <div className="lg:hidden block min-h-screen">
+        <MobileUnsupportedView />
+      </div>
+
+      {/* Desktop / Large Screen Layout: Displayed on lg (1024px) and above */}
+      <div className="hidden lg:block min-h-screen">
+        <AppSidebar />
+        <div className="lg:pl-64 flex flex-col min-h-screen">
+          <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full">
+            {children}
+          </main>
+          <footer className="p-4 border-t border-border/60 text-center text-xs text-muted-foreground">
+            JustGoDev Hotel Suite • Developed by Nengxiong WANGTOUAXIONG, Vientiane, Laos
+          </footer>
+        </div>
       </div>
     </div>
   );

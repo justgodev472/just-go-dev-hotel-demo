@@ -62,6 +62,10 @@ export const en: TranslationSchema = {
     roleFrontDesk: "Front Desk",
     roleHousekeepingShort: "Housekeeping",
     settingsTitle: "Settings",
+    mobileUnsupportedTitle: "Mobile Devices Not Supported",
+    mobileUnsupportedDesc: "Please access this Hotel Suite on a Tablet, Laptop, or Desktop computer for an optimal PMS management view.",
+    mobileUnsupportedMinResolution: "Minimum supported screen width: 1024px or higher",
+    mobileUnsupportedLogout: "Sign Out",
   },
   dashboard: {
     occupancyRate: "Occupancy Rate",

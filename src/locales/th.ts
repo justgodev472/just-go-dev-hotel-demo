@@ -62,6 +62,10 @@ export const th: TranslationSchema = {
     roleFrontDesk: "แผนกต้อนรับ (Front Desk)",
     roleHousekeepingShort: "แม่บ้าน",
     settingsTitle: "ตั้งค่าระบบ",
+    mobileUnsupportedTitle: "ระบบนี้ไม่รองรับการใช้งานในมือถือ",
+    mobileUnsupportedDesc: "กรุณาเปิดใช้งานบนแท็บเล็ต, แล็ปท็อป หรือคอมพิวเตอร์เดสก์ท็อป เพื่อประสิทธิภาพและมุมมองการบริหารจัดการโรงแรมที่สมบูรณ์",
+    mobileUnsupportedMinResolution: "ความกว้างหน้าจอขั้นต่ำที่รองรับ: 1024px ขึ้นไป",
+    mobileUnsupportedLogout: "ออกจากระบบ",
   },
   dashboard: {
     occupancyRate: "อัตราการเข้าพัก",

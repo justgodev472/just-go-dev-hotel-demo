@@ -4,7 +4,7 @@ import React from "react";
 import { BedDouble, Users2, CalendarCheck, DollarSign, TrendingUp, Sparkles, Wrench, ShieldAlert } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/context/LanguageContext";
-import { formatCurrency, formatPriceFromLAK } from "@/lib/formatters";
+import { formatPriceFromLAK } from "@/lib/formatters";
 import { type HotelKpisProps } from "@/types/dashboard";
 
 export function HotelKpis({ metrics, currency, role = "manager" }: HotelKpisProps) {

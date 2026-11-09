@@ -11,7 +11,6 @@ import {
   Users2,
   Menu,
   X,
-  Sparkles,
   Shield,
   Crown,
   Wrench,
