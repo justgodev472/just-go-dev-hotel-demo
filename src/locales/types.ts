@@ -207,6 +207,8 @@ export interface TranslationSchema {
     accountDesc: string;
     logoutButton: string;
     logoutConfirm: string;
+    switchRoleTitle: string;
+    switchRoleDesc: string;
     systemInfo: string;
     systemInfoDesc: string;
     roleLabel: string;

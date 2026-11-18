@@ -207,6 +207,8 @@ export const lo: TranslationSchema = {
     accountDesc: "ຂໍ້ມູນຜູ້ເຂົ້າສູ່ລະບົບ ແລະ ສິດທິໃນການຈັດການໂຮງແຮມ",
     logoutButton: "ອອກຈາກລະບົບ",
     logoutConfirm: "ທ່ານຕ້ອງການອອກຈາກລະບົບແທ້ບໍ່?",
+    switchRoleTitle: "ປ່ຽນບົດບາດເປັນ...",
+    switchRoleDesc: "ທົດລອງສະຫຼັບສິດການໃຊ້ງານລະບົບໂຮງແຮມແບບທັນທີ",
     systemInfo: "ຂໍ້ມູນລະບົບ Sandbox",
     systemInfoDesc: "ລະບົບ Hotel Suite Showcase Sandbox ທຳງານເທິງ Client-side LocalStorage ປອດໄພ 100%",
     roleLabel: "ຕຳແໜ່ງ / ສິດທິ",

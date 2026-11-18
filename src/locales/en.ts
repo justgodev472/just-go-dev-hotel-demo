@@ -207,6 +207,8 @@ export const en: TranslationSchema = {
     accountDesc: "Current signed-in user credentials and hotel management role",
     logoutButton: "Sign Out",
     logoutConfirm: "Are you sure you want to sign out of the hotel system?",
+    switchRoleTitle: "Switch Role to...",
+    switchRoleDesc: "Instantly switch hotel staff roles and permissions",
     systemInfo: "Sandbox Environment",
     systemInfoDesc: "JustGoDev Hotel Suite Showcase Sandbox running entirely on secure Client-side LocalStorage",
     roleLabel: "Role / Permission",

@@ -37,7 +37,41 @@ export function SettingsView() {
 
   const { locale, setLocale, dictionary } = useLanguage();
   const { theme, setTheme } = useTheme();
-  const { user, currency, setCurrency, logout } = useHotel();
+  const { user, currency, setCurrency, login, logout } = useHotel();
+
+  const roleSwitchOptions: {
+    id: string;
+    name: string;
+    role: UserRole;
+    avatar: string;
+    label: string;
+    icon: React.ElementType;
+  }[] = [
+    {
+      id: "usr-gm",
+      name: "Nengxiong WANGTOUAXIONG",
+      role: "manager",
+      avatar: "NW",
+      label: dictionary.auth.roleManager,
+      icon: Crown,
+    },
+    {
+      id: "usr-fd",
+      name: "Chanthaphone Keomany",
+      role: "receptionist",
+      avatar: "CK",
+      label: dictionary.auth.roleReception,
+      icon: Shield,
+    },
+    {
+      id: "usr-hk",
+      name: "Vilayvanh Phommachanh",
+      role: "housekeeping",
+      avatar: "VP",
+      label: dictionary.auth.roleHousekeeping,
+      icon: Wrench,
+    },
+  ];
 
   const currencies: { id: Currency; code: string; name: string; symbol: string }[] = [
     { id: "LAK", code: "LAK", name: "ກີບລາວ (Lao Kip)", symbol: "₭" },
@@ -257,6 +291,74 @@ export function SettingsView() {
           Zero-Reload Multilingual Engine • Vientiane, Laos
         </div>
       </div>
+
+      {/* Role Switcher Card ("เปลี่ยนบทบาทเป็น...") */}
+      <Card className="border-border bg-card rounded-2xl shadow-2xs">
+        <CardHeader className="p-4 pb-3 border-b border-border/60 flex flex-row items-center justify-between">
+          <div className="flex items-center gap-2">
+            <User className="w-4 h-4 text-primary" />
+            <div>
+              <CardTitle className="text-xs font-bold uppercase tracking-wide text-foreground">
+                {dictionary.settings.switchRoleTitle}
+              </CardTitle>
+              <p className="text-[11px] text-muted-foreground mt-0.5">
+                {dictionary.settings.switchRoleDesc}
+              </p>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent className="p-4 grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          {roleSwitchOptions.map((opt) => {
+            const Icon = opt.icon;
+            const isCurrent = isMounted && user?.role === opt.role;
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() =>
+                  login({
+                    id: opt.id,
+                    name: opt.name,
+                    role: opt.role,
+                    avatar: opt.avatar,
+                  })
+                }
+                className={`p-3 rounded-xl border text-left transition-all flex items-center justify-between gap-2 cursor-pointer ${
+                  isCurrent
+                    ? "bg-primary/10 border-primary ring-1 ring-primary shadow-xs"
+                    : "bg-background border-border/80 hover:bg-muted/40"
+                }`}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div
+                    className={`h-8 w-8 rounded-lg flex items-center justify-center shrink-0 ${
+                      isCurrent
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary text-muted-foreground"
+                    }`}
+                  >
+                    <Icon className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-xs font-bold text-foreground block truncate">
+                      {opt.label}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground block truncate">
+                      {opt.name}
+                    </span>
+                  </div>
+                </div>
+                {isCurrent && (
+                  <Badge variant="default" className="text-[9px] py-0 px-1.5 rounded-md shrink-0">
+                    {dictionary.settings.activeBadge}
+                  </Badge>
+                )}
+              </button>
+            );
+          })}
+        </CardContent>
+      </Card>
+
       {/* Executive Staff Keycard & Hotel Session Bar (No page title/subtitle) */}
       <div className="p-5 rounded-2xl bg-gradient-to-r from-red-950/20 via-card to-card border border-border shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
